@@ -1,0 +1,25 @@
+libnlp: 
+
+ - Corpora: loader, importer, library
+ - Vectorizer
+ - Feature selection
+ - Tagger, parser, chunker
+ - Sequence 
+ - Named entity extractor, term extractor
+ - Classification
+ - Topic acquisition, term acquisition
+ - DA -> classifier -> sequencer
+
+textclassifier
+
+libsemnet:
+ - Semantic network structures
+ - Operations on graphs, storing, loading
+ - Weighted graph
+ - Acquire from text?
+
+
+wiki acquisition
+
+
+
