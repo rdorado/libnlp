@@ -34,6 +34,7 @@ int main(int argc, char *argv[]) {
 }
 
 void print_help() {
+	libnlp::foo();
 	cout << "This is the CLI of libnlp. Current options are:" << endl;
 	cout << "  sentdetect" << endl; 
 }

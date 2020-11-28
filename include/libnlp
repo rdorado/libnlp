@@ -1,6 +1,10 @@
 #ifndef LIBNLP_H
 #define LIBNLP_H
 
-void foo(void);
+namespace libnlp{
+
+  void foo(void);
+  
+}
 
 #endif
