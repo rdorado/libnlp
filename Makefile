@@ -4,13 +4,13 @@ VPATH = ./src
 DEPS = libnlp.h
 CC = g++
 CFLAGS = -c -Wall -Iinclude
-LIBFLAGS = -shared -Wl,-out-implib,libnlp.a
-EXEFLAGS = -Wl,-rpath=. -L. -lnlp -Iinclude
+LIBFLAGS = -shared -fPIC
+EXEFLAGS = -L. -lnlp -Iinclude
 SRC = libnlp.cpp
 
 
 %.o: %.cpp
-	$(CC) -c $< $(CFLAGS) -o $@
+	$(CC) -c $< $(CFLAGS) $(LIBFLAGS)  -o $@
 
 
 all: libnlp.so libnlp
@@ -31,19 +31,20 @@ clean:
 	rm -f *.o *.so libnlp
 
 libnlp.so: libnlp.o
-	$(CC) -shared -o libnlp.so libnlp.o
+	$(CC) $(LIBFLAGS) -o libnlp.so libnlp.o
 
 libnlp: main.o libnlp.so
-	$(CC)  main.o -Iinclude -o main
+	$(CC)  main.o $(EXEFLAGS) -o libnlp
 
 #-W1,-export-all-symbols-Wl,-enable-auto-image-base
 #	g++ -c libnlp.cpp -o libnlp.o
 #	
-#install:
-#	mkdir -p $(DESTDIR)/usr/lib
-#	mkdir -p $(DESTDIR)/usr/include
-#	cp libnlp.so $(DESTDIR)/usr/lib/
-#	cp libnlp.h $(DESTDIR)/usr/include/
+install:
+	mkdir -p $(DESTDIR)/usr/lib
+	mkdir -p $(DESTDIR)/usr/include
+	cp libnlp.so $(DESTDIR)/usr/lib/
+	cp include/libnlp $(DESTDIR)/usr/include/
+	cp libnlp $(DESTDIR)/usr/bin
 
 
 #all: libnlp.exe clean
