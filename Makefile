@@ -9,15 +9,11 @@ EXEFLAGS = -Wl,-rpath=. -L. -lnlp -Iinclude
 SRC = libnlp.cpp
 
 
-info:
-  $(info $(OS))
-
 %.o: %.cpp
 	$(CC) -c $< $(CFLAGS) -o $@
 
 
-
-
+all: libnlp.so libnlp
 	
 #libnlp.o: libnlp.cpp main.cpp
 #	$(CC) -c libnlp.cpp main.cpp
@@ -31,12 +27,14 @@ info:
 
 
 
-#clean:
-#	rm -f *.o
-#	rm -f *.so
+clean:
+	rm -f *.o *.so libnlp
 
-#libnlp.so: libnlp.o
-#	g++ -shared -o libnlp	.cpp - libnlp.o
+libnlp.so: libnlp.o
+	$(CC) -shared -o libnlp.so libnlp.o
+
+libnlp: main.o libnlp.so
+	$(CC)  main.o -Iinclude -o main
 
 #-W1,-export-all-symbols-Wl,-enable-auto-image-base
 #	g++ -c libnlp.cpp -o libnlp.o
