@@ -8,34 +8,16 @@ LIBFLAGS = -shared -Wl,-out-implib,libnlp.a
 EXEFLAGS = -Wl,-rpath=. -L. -lnlp -Iinclude
 SRC = libnlp.cpp
 
-all: libnlp.exe clean
-	
-build: libnlp.exe
 
-rebuild: clean-all all
-	
-libnlp.exe: main.o libnlp.dll
-	$(CC) main.o $(EXEFLAGS) -o libnlp.exe
-
-libnlp.dll: libnlp.o
-	$(CC) libnlp.o $(LIBFLAGS) -o libnlp.dll 
+info:
+  $(info $(OS))
 
 %.o: %.cpp
 	$(CC) -c $< $(CFLAGS) -o $@
 
-clean-all:
-	rm -f *.o *.a *.dll *.exe
-
-clean:
-	rm -f *.o *.a 
 
 
-	
-	
-	
-	
-	
-	
+
 	
 #libnlp.o: libnlp.cpp main.cpp
 #	$(CC) -c libnlp.cpp main.cpp
@@ -64,3 +46,26 @@ clean:
 #	mkdir -p $(DESTDIR)/usr/include
 #	cp libnlp.so $(DESTDIR)/usr/lib/
 #	cp libnlp.h $(DESTDIR)/usr/include/
+
+
+#all: libnlp.exe clean
+#	
+#build: libnlp.exe
+#
+#rebuild: clean-all all
+#	
+#libnlp.exe: main.o libnlp.dll
+#	$(CC) main.o $(EXEFLAGS) -o libnlp.exe
+#
+#libnlp.dll: libnlp.o
+#	$(CC) libnlp.o $(LIBFLAGS) -o libnlp.dll 
+#
+#%.o: %.cpp
+#	$(CC) -c $< $(CFLAGS) -o $@
+#
+#clean-all:
+#	rm -f *.o *.a *.dll *.exe
+#
+#clean:
+#	rm -f *.o *.a 
+	
