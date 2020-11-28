@@ -1,4 +1,12 @@
 # libnlp
 
 
-Libnlp is ...
+
+
+## Debian:
+
+
+
+Remove package:
+
+dpkg --remove libnlp
